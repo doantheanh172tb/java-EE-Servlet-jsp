@@ -3,6 +3,7 @@ package doantheanh.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,11 +41,10 @@ public class Authentication extends HttpServlet {
 		DatabaseManagement dm = new DatabaseManagement();
 		
 		if (dm.checkUser(userName, password)) {
-			writer.println("Wellcome first project!<br/>");
-			writer.println("Username: " + userName + "<br/>");
-			writer.println("password: " + password + "<br/>");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
 		} else {
-			writer.println("User/password is incorrect! <br/>");
+			response.sendRedirect("login.jsp");
 		}
 	}
 
