@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import doantheanh.models.DatabaseManagement;
+
 /**
  * Servlet implementation class Authentication
  */
@@ -34,8 +36,10 @@ public class Authentication extends HttpServlet {
 		String password = request.getParameter("password");
 
 		PrintWriter writer = response.getWriter();
-
-		if (userName.equals("doan") && password.equals("123")) {
+		
+		DatabaseManagement dm = new DatabaseManagement();
+		
+		if (dm.checkUser(userName, password)) {
 			writer.println("Wellcome first project!<br/>");
 			writer.println("Username: " + userName + "<br/>");
 			writer.println("password: " + password + "<br/>");
