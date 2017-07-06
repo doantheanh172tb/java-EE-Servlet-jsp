@@ -10,27 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Helloworld
+ * Servlet implementation class Authentication
  */
-//@WebServlet(description = "this is demo", urlPatterns = { "/start" })
-public class Helloworld extends HttpServlet {
+// @WebServlet("/Authentication")
+public class Authentication extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Helloworld() {
+	public Authentication() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		loadParameter(request, response, "Get");
 	}
 
 	/**
@@ -39,13 +30,18 @@ public class Helloworld extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		loadParameter(request, response, "Post");
-	}
+		String userName = request.getParameter("username");
+		String password = request.getParameter("password");
 
-	private void loadParameter(HttpServletRequest request, HttpServletResponse response, String method)
-			throws ServletException, IOException {
 		PrintWriter writer = response.getWriter();
-		writer.println("Hello The Anh:::  By " + method + "<br/>");
+
+		if (userName.equals("doan") && password.equals("123")) {
+			writer.println("Wellcome first project!<br/>");
+			writer.println("Username: " + userName + "<br/>");
+			writer.println("password: " + password + "<br/>");
+		} else {
+			writer.println("User/password is incorrect! <br/>");
+		}
 	}
 
 }
