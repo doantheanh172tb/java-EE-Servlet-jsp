@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+The image Name: <%= request.getAttribute("imageName") %>
 	<img alt="this is a show" src="images/babyfunny.jpg">
 </body>
 </html>

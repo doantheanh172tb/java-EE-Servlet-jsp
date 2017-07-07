@@ -41,7 +41,7 @@ public class Authentication extends HttpServlet {
 		DatabaseManagement dm = new DatabaseManagement();
 		
 		if (dm.checkUser(userName, password)) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/ImageShow");
 			dispatcher.forward(request, response);
 		} else {
 			response.sendRedirect("login.jsp");
