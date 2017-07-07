@@ -43,6 +43,7 @@ public class Authentication extends HttpServlet {
 		
 		if (dm.checkUser(userName, password)) {
 			HttpSession session = request.getSession();
+			//session.setMaxInactiveInterval(900);setTimeOut by minisecon
 			
 			session.setAttribute("userName", userName);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/imageshow");
