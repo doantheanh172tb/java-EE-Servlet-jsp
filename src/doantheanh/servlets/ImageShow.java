@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ImageShow
@@ -45,7 +46,9 @@ public class ImageShow extends HttpServlet {
 
 	private void doCheck(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String userName = (String) request.getAttribute("userName");
+		HttpSession session = request.getSession();
+		
+		String userName = (String) session.getAttribute("userName");
 		if (userName == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
 			dispatcher.forward(request, response);

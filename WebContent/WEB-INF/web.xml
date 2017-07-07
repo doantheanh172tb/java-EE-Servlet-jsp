@@ -12,6 +12,14 @@
       <param-value>I crazy</param-value>
     </init-param>
   </servlet>
+  <servlet>
+    <servlet-name>ImageShow</servlet-name>
+    <servlet-class>doantheanh.servlets.ImageShow</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ImageShow</servlet-name>
+    <url-pattern>/imageshow</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Hello World</servlet-name>
     <url-pattern>/hello</url-pattern>

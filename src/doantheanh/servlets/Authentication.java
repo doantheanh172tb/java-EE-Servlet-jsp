@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import doantheanh.models.DatabaseManagement;
 
@@ -41,8 +42,11 @@ public class Authentication extends HttpServlet {
 		DatabaseManagement dm = new DatabaseManagement();
 		
 		if (dm.checkUser(userName, password)) {
-			request.setAttribute("userName", userName);
+			HttpSession session = request.getSession();
+			
+			session.setAttribute("userName", userName);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/imageshow");
+			request.setAttribute("imageName", "babay funny");
 			dispatcher.forward(request, response);
 		} else {
 			response.sendRedirect("login.jsp");
