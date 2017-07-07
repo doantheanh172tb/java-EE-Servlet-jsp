@@ -12,35 +12,47 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ImageShow
  */
-@WebServlet("/ImageShow")
+//@WebServlet("/ImageShow")
 public class ImageShow extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ImageShow() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	public ImageShow() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		doGet(request, response);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
-		request.setAttribute("imageName", "Baby");
-		dispatcher.forward(request, response);
+		doCheck(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doCheck(request, response);
+	}
+
+	private void doCheck(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String userName = (String) request.getAttribute("userName");
+		if (userName == null) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+			dispatcher.forward(request, response);
+		} else {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/baby2.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 
 }
