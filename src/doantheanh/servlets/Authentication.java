@@ -2,10 +2,12 @@ package doantheanh.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,6 +44,8 @@ public class Authentication extends HttpServlet {
 		DatabaseManagement dm = new DatabaseManagement();
 		
 		if (dm.checkUser(userName, password)) {
+			response.addCookie(new Cookie("location", "VietNam"));
+			
 			HttpSession session = request.getSession();
 			//session.setMaxInactiveInterval(900);setTimeOut by minisecon
 			

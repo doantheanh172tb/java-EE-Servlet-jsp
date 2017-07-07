@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -53,6 +54,11 @@ public class ImageShow extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
 			dispatcher.forward(request, response);
 		} else {
+			for(Cookie c: request.getCookies()) {
+				System.out.println(c.getName());
+				System.out.println(c.getValue());
+			}
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/baby2.jsp");
 			dispatcher.forward(request, response);
 		}
