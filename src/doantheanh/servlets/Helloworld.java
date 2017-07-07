@@ -3,6 +3,8 @@ package doantheanh.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Helloworld
  */
-//@WebServlet(description = "this is demo", urlPatterns = { "/start" })
+// @WebServlet(description = "this is demo", urlPatterns = { "/start" })
 public class Helloworld extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -44,8 +46,16 @@ public class Helloworld extends HttpServlet {
 
 	private void loadParameter(HttpServletRequest request, HttpServletResponse response, String method)
 			throws ServletException, IOException {
+		ServletContext context = this.getServletContext();
+		String appParam = context.getInitParameter("appParam");
+		
+		ServletConfig config = this.getServletConfig();
+		String song = config.getInitParameter("song");
+		
 		PrintWriter writer = response.getWriter();
 		writer.println("Hello The Anh:::  By " + method + "<br/>");
+		writer.println("The Song::: " + song + "<br/>");
+		writer.println("The appParam::: " + appParam + "<br/>");
 	}
 
 }
