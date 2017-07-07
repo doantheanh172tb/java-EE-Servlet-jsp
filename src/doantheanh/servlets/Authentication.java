@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import doantheanh.models.DatabaseManagement;
+import doantheanh.models.Image;
 
 /**
  * Servlet implementation class Authentication
@@ -51,7 +52,8 @@ public class Authentication extends HttpServlet {
 			
 			session.setAttribute("userName", userName);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/imageshow");
-			request.setAttribute("imageName", "babay funny");
+			Image funnyImage = new Image("Baby", 200, 300);
+			request.setAttribute("imageName", funnyImage);
 			dispatcher.forward(request, response);
 		} else {
 			response.sendRedirect("login.jsp");
