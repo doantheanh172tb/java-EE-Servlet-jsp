@@ -1,6 +1,9 @@
 package doantheanh.models;
 
-public class Image {
+import javax.servlet.http.HttpSessionBindingEvent;
+import javax.servlet.http.HttpSessionBindingListener;
+
+public class Image implements HttpSessionBindingListener {
 	private String name;
 	private int width;
 	private int height;
@@ -34,6 +37,16 @@ public class Image {
 
 	public void setHeight(int height) {
 		this.height = height;
+	}
+
+	@Override
+	public void valueBound(HttpSessionBindingEvent event) {
+		event.getSession().getServletContext().log("Image in the Session:: " + getName());
+	}
+
+	@Override
+	public void valueUnbound(HttpSessionBindingEvent event) {
+		event.getSession().getServletContext().log("Image out the Session:: " + getName());
 	}
 
 }

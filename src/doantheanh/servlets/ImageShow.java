@@ -50,6 +50,7 @@ public class ImageShow extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		String userName = (String) session.getAttribute("userName");
+		session.invalidate();
 		if (userName == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
 			dispatcher.forward(request, response);
